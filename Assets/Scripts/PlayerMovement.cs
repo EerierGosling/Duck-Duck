@@ -7,17 +7,20 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float acceleration;
     public float deceleration;
-    public float jumpForce;
+    public float jumpForceGround;
+    public float jumpForceWater;
     public int maxJumps = 2;
     private int jumpCount = 0;
 
     private bool isGrounded;
+    private bool isInWater;
     private Rigidbody2D rb;
     private float moveInput;
     private float currentVelocity;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask ground;
+    public LayerMask water;
 
     public bool facingRight;
 
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, ground);
+        isInWater = Physics2D.OverlapCircle(groundCheck.position, checkRadius, water);
 
         if (isGrounded)
         {
@@ -50,9 +54,9 @@ public class PlayerMovement : MonoBehaviour
            
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || jumpCount < maxJumps))
+        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || isInWater || jumpCount < maxJumps))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, isGrounded ? jumpForceGround : jumpForceWater);
             jumpCount++;
         }
 
