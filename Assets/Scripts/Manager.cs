@@ -6,8 +6,8 @@ public class Manager : MonoBehaviour
 {
     public Animator cam;
     public int DuckCount;
-    public GameObject Door;
     public GameObject Particles;
+    public bool openDoor = false;
 
     private void Start()
     {
@@ -18,9 +18,9 @@ public class Manager : MonoBehaviour
     {
         if (DuckCount == 2)
         {
-            Destroy(Door);
             Particles.SetActive(true);
             cam.SetTrigger("done");
+            openDoor = true;
             DuckCount = 0;
         }
     }

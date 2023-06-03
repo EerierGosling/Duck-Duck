@@ -135,7 +135,7 @@ MonoBehaviour:
   acceleration: 9
   deceleration: 60
   jumpForceGround: 8.5
-  jumpForceWater: 3
+  jumpForceWater: 4
   maxJumps: 0
   groundCheck: {fileID: 8211927081882327391}
   checkRadius: 0.5

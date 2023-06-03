@@ -18,9 +18,11 @@ public class DuckScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player collided with the duck");
+            Debug.Log("Player collided with the duck" + Man.DuckCount);
             anim.SetTrigger("gone");
+
             Man.DuckCount++; // Increment the DuckCount variable in the Manager script
+            Debug.Log("Player collided with the duck" + Man.DuckCount);
             Destroy(gameObject);
         }
     }
